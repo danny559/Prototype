@@ -1,0 +1,45 @@
+<h1 class="h2Style">Drag and Drop Prototype</h1>
+
+<div class="example-container">
+  <h2 class="h2Style">To do</h2>
+
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="todo"
+    [cdkDropListConnectedTo]="[inprogressList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+  </div>
+</div>
+
+<div class="example-container">
+  <h2 class='h2Style'>In Progress</h2>
+
+  <div
+    cdkDropList
+    #inprogressList="cdkDropList"
+    [cdkDropListData]="inprogress"
+    [cdkDropListConnectedTo]="[doneList, todoList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of inprogress" cdkDrag>{{item}}</div>
+  </div>
+</div>
+
+<div class="example-container">
+  <h2 class="h2Style">Done</h2>
+
+  <div
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="done"
+    [cdkDropListConnectedTo]="[todoList, inprogressList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
